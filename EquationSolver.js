@@ -127,16 +127,16 @@ class EquationSolver {
      * An array of Root objects 
      */
     static #secondDegreeEquationSolver(a, b, c) {
-        if (a === 0) return [new EquationSolver.Root(-c / b, null)];
+        if (a === 0) return [new this.Root(-c / b, 0)];
         const delta = Math.pow(b, 2) - 4 * a * c;
         return delta < 0 ?
             [
-                new EquationSolver.Root(-b / (2 * a), Math.sqrt(Math.abs(delta)) / (2 * a)),
-                new EquationSolver.Root(-b / (2 * a), -Math.sqrt(Math.abs(delta)) / (2 * a))
+                new this.Root(-b / (2 * a), Math.sqrt(Math.abs(delta)) / (2 * a)),
+                new this.Root(-b / (2 * a), -Math.sqrt(Math.abs(delta)) / (2 * a))
             ] :
             [
-                new EquationSolver.Root((-b + Math.sqrt(delta)) / (2 * a), null),
-                new EquationSolver.Root((-b - Math.sqrt(delta)) / (2 * a), null)
+                new this.Root((-b + Math.sqrt(delta)) / (2 * a), 0),
+                new this.Root((-b - Math.sqrt(delta)) / (2 * a), 0)
             ]
     }
 
