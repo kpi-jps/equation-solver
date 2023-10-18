@@ -126,7 +126,7 @@ class EquationSolver {
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
-     static #secondDegreeEquationSolver(a, b, c) {
+    static #secondDegreeEquationSolver(a, b, c) {
         if (a === 0) return [new EquationSolver.Root(-c / b, null)];
         const delta = Math.pow(b, 2) - 4 * a * c;
         return delta < 0 ?
@@ -138,6 +138,59 @@ class EquationSolver {
                 new EquationSolver.Root((-b + Math.sqrt(delta)) / (2 * a), null),
                 new EquationSolver.Root((-b - Math.sqrt(delta)) / (2 * a), null)
             ]
+    }
+
+     /**
+     * @method
+     * Solves the third degree equations
+     * @param {Number} a 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {Number} b 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {Number} c 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @returns {Array<EquationSolver.Root>}
+     * An array of Root objects 
+     */
+    static #thirdDegreeEquationSolver(a, b, c, d) {
+        if (d === 0) return [new this.Root(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
+
+        //using Tartaglia-Cardano method
+        const A = b / a;
+        const B = c / a;
+        const C = d / a;
+
+        const p = B - Math.pow(A, 2) / 3;
+        const q = C + 2 * Math.pow(A, 3) / 27 - A * B / 3;
+        const delta = Math.pow(q, 2) / 4 + Math.pow(p, 3) / 27;
+        if (delta >= 0) {
+            const y1 = Math.cbrt((-q / 2) + Math.sqrt(delta)) + Math.cbrt((-q / 2) - Math.sqrt(delta));
+            const delta2 = -(3 * Math.pow(y1, 2) + 4 * p);
+            const root1 = new this.Root(y1 - A / 3, null);
+            if (delta2 < 0) {
+                const root2 = new this.Root(-y1 / 2 - A / 3, Math.sqrt(Math.abs(delta2)) / 2);
+                const root3 = new this.Root(-y1 / 2 - A / 3, -Math.sqrt(Math.abs(delta2)) / 2);
+                return [root1, root2, root3];
+            }
+            const root2 = new this.Root(((-y1 + Math.sqrt(delta2)) / 2) - A / 3, 0);
+            const root3 = new this.Root(((-y1 - Math.sqrt(delta2)) / 2) - A / 3, 0);
+            return [root1, root2, root3];
+        }
+
+        //Using equations of Euler and DeMoivre
+        const rho = Math.sqrt(Math.pow(q, 2) / 4 + Math.abs(delta))
+        const theta = Math.acos(-q / (2 * rho));
+
+        const y1 = 2 * Math.cbrt(rho) * Math.cos(theta / 3);
+        const y2 = 2 * Math.cbrt(rho) * Math.cos((theta + 2 * Math.PI) / 3);
+        const y3 = 2 * Math.cbrt(rho) * Math.cos((theta + 4 * Math.PI) / 3);
+
+        return [
+            new this.Root(y1 - A / 3, 0),
+            new this.Root(y2 - A / 3, 0),
+            new this.Root(y3 - A / 3, 0)
+        ]
+
     }
 
     
