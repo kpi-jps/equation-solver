@@ -108,9 +108,11 @@ class EquationSolver {
      * @param {Number} b 
      * "b" parameter of first degree equation (ax+b = 0)
      * @returns {Array<EquationSolver.Root>}
-     * An array of Root objects or a empty array in the case of null values for "a" e "b" parameters
+     * An array of Root objects 
      */
     static #firstDegreeEquationSolver(a,b) {
         return b < 0 ? new this.Root( b / a, 0) : new this.Root((-1) * b / a, 0);
     }
+
+    
 }
