@@ -192,6 +192,27 @@ class EquationSolver {
         ]
 
     }
-
-    
+    /**
+     * @method
+     * Solves the first, second or third degree equations
+     * @param {Number} a 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {Number} b 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {Number} c 
+     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @throws {TypeError}
+     * A TypeError when "a", "b", "c" and/or "d" aren't a number
+     * @returns {Array<EquationSolver.Root>}
+     * An array of Root objects 
+     */
+    static solver(a, b, c, d) {
+        if(Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
+            const errorMsg = "\"a\", \"b\", \"c\" and \"d\" parameter must be a number!";
+            throw new TypeError(errorMsg);
+        }
+        if(a == 0 && b == 0 ) return this.#firstDegreeEquationSolver(c, d);
+        if(a == 0) return this.#secondDegreeEquationSolver(b,c,d);
+        return this.#thirdDegreeEquationSolver(a,b,c,d);
+    }
 }
