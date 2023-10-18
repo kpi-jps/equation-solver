@@ -25,8 +25,7 @@ class EquationSolver {
          */
         constructor(re, im) {
             this.#re = re;
-            if (im === 0 || im == null) this.#im = null;
-            else this.#im = im;
+            this.#im = im;
         }
 
         /**
@@ -46,7 +45,7 @@ class EquationSolver {
          * Information about root type 
          */
         informRootType() {
-            return this.#im != null ? 'complex root' : 'real root';
+            return this.#im == 0 ? 'complex root' : 'real root';
         }
 
         /**
@@ -62,7 +61,7 @@ class EquationSolver {
         /**
          * @method
          * Return the value of real part of the Root object as a string
-         * @returns {Number}
+         * @returns {String}
          * The value of real part of the Root object as a string
          */
         getReValueAsString() {
@@ -93,8 +92,8 @@ class EquationSolver {
          * The representantion of root values
          */
         getRootAsString() {
-            if (this.#im == null) return this.getReValueAsString();
-            if (this.#re == null || this.#re === 0) return this.getImValueAsString();
+            if (this.#im == 0) return this.getReValueAsString();
+            if (this.#re === 0) return this.getImValueAsString();
             return (this.#im > 0) ?
                 this.getReValueAsString() + "+" + this.getImValueAsString() :
                 this.getReValueAsString() + this.getImValueAsString();
