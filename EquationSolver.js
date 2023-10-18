@@ -207,13 +207,19 @@ class EquationSolver {
      * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @throws {TypeError}
      * A TypeError when "a", "b", "c" and/or "d" aren't a number
+     * @throws {RangeError}
+     * A RangeError when "c" and/or "d" are equal to 0
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
     static solver(a, b, c, d) {
         if(Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
-            const errorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
-            throw new TypeError(errorMsg);
+            const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
+            throw new TypeError(typeErrorMsg);
+        }
+        if(c == 0 || d == 0) {
+            const rangeErrorMsg = "\"c\" and \"d\" parameters must be different of 0!";
+            throw new RangeError(rangeErrorMsg);
         }
         if(a == 0 && b == 0 ) return this.#firstDegreeEquationSolver(c, d);
         if(a == 0) return this.#secondDegreeEquationSolver(b,c,d);
