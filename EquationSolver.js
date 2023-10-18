@@ -104,9 +104,9 @@ class EquationSolver {
      * @method
      * Solves the second degree equations
      * @param {Number} a 
-     * "a" parameter of first degree equation (ax+b = 0)
+     * Parameter of first degree equation (ax+b = 0)
      * @param {Number} b 
-     * "b" parameter of first degree equation (ax+b = 0)
+     * Parameter of first degree equation (ax+b = 0)
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
@@ -118,11 +118,11 @@ class EquationSolver {
      * @method
      * Solves the second degree equations
      * @param {Number} a 
-     * "a" parameter of second degree equation (ax^2+bx+c = 0)
+     * Parameter of second degree equation (ax^2+bx+c = 0)
      * @param {Number} b 
-     * "b" parameter of second degree equation (ax^2+bx+c = 0)
+     * Parameter of second degree equation (ax^2+bx+c = 0)
      * @param {Number} c 
-     * "c" parameter of second degree equation (ax^2+bx+c = 0)
+     * Parameter of second degree equation (ax^2+bx+c = 0)
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
@@ -144,11 +144,13 @@ class EquationSolver {
      * @method
      * Solves the third degree equations
      * @param {Number} a 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @param {Number} b 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @param {Number} c 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {Number} d 
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
@@ -196,11 +198,13 @@ class EquationSolver {
      * @method
      * Solves the first, second or third degree equations
      * @param {Number} a 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0). 
+     * Needs to be 0 for first and second degree equations
      * @param {Number} b 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Needs to be 0 for first degree equations
      * @param {Number} c 
-     * "a" parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @throws {TypeError}
      * A TypeError when "a", "b", "c" and/or "d" aren't a number
      * @returns {Array<EquationSolver.Root>}
@@ -208,7 +212,7 @@ class EquationSolver {
      */
     static solver(a, b, c, d) {
         if(Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
-            const errorMsg = "\"a\", \"b\", \"c\" and \"d\" parameter must be a number!";
+            const errorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(errorMsg);
         }
         if(a == 0 && b == 0 ) return this.#firstDegreeEquationSolver(c, d);
