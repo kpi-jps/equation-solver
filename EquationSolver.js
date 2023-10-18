@@ -110,22 +110,22 @@ class EquationSolver {
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
-    static #firstDegreeEquationSolver(a,b) {
-        return b < 0 ? new this.Root( b / a, 0) : new this.Root((-1) * b / a, 0);
+    static #firstDegreeEquationSolver(a, b) {
+        return b < 0 ? new this.Root(b / a, 0) : new this.Root((-1) * b / a, 0);
     }
 
-     /**
-     * @method
-     * Solves the second degree equations
-     * @param {Number} a 
-     * Parameter of second degree equation (ax^2+bx+c = 0)
-     * @param {Number} b 
-     * Parameter of second degree equation (ax^2+bx+c = 0)
-     * @param {Number} c 
-     * Parameter of second degree equation (ax^2+bx+c = 0)
-     * @returns {Array<EquationSolver.Root>}
-     * An array of Root objects 
-     */
+    /**
+    * @method
+    * Solves the second degree equations
+    * @param {Number} a 
+    * Parameter of second degree equation (ax^2+bx+c = 0)
+    * @param {Number} b 
+    * Parameter of second degree equation (ax^2+bx+c = 0)
+    * @param {Number} c 
+    * Parameter of second degree equation (ax^2+bx+c = 0)
+    * @returns {Array<EquationSolver.Root>}
+    * An array of Root objects 
+    */
     static #secondDegreeEquationSolver(a, b, c) {
         if (a === 0) return [new this.Root(-c / b, 0)];
         const delta = Math.pow(b, 2) - 4 * a * c;
@@ -140,20 +140,20 @@ class EquationSolver {
             ]
     }
 
-     /**
-     * @method
-     * Solves the third degree equations
-     * @param {Number} a 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
-     * @param {Number} b 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
-     * @param {Number} c 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
-     * @param {Number} d 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
-     * @returns {Array<EquationSolver.Root>}
-     * An array of Root objects 
-     */
+    /**
+    * @method
+    * Solves the third degree equations
+    * @param {Number} a 
+    * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+    * @param {Number} b 
+    * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+    * @param {Number} c 
+    * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+    * @param {Number} d 
+    * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+    * @returns {Array<EquationSolver.Root>}
+    * An array of Root objects 
+    */
     static #thirdDegreeEquationSolver(a, b, c, d) {
         if (d === 0) return [new this.Root(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
 
@@ -213,16 +213,16 @@ class EquationSolver {
      * An array of Root objects 
      */
     static solver(a, b, c, d) {
-        if(Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
+        if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
         }
-        if(c == 0 || d == 0) {
+        if (c == 0 || d == 0) {
             const rangeErrorMsg = "\"c\" and \"d\" parameters must be different of 0!";
             throw new RangeError(rangeErrorMsg);
         }
-        if(a == 0 && b == 0 ) return this.#firstDegreeEquationSolver(c, d);
-        if(a == 0) return this.#secondDegreeEquationSolver(b,c,d);
-        return this.#thirdDegreeEquationSolver(a,b,c,d);
+        if (a == 0 && b == 0) return this.#firstDegreeEquationSolver(c, d);
+        if (a == 0) return this.#secondDegreeEquationSolver(b, c, d);
+        return this.#thirdDegreeEquationSolver(a, b, c, d);
     }
 }
