@@ -107,9 +107,6 @@ class EquationSolver {
      * "a" parameter of first degree equation (ax+b = 0)
      * @param {Number} b 
      * "b" parameter of first degree equation (ax+b = 0)
-     * @throws {Error}
-     * Throws a Erro object when null values are 
-     * 
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects or a empty array in the case of null values for "a" e "b" parameters
      */
