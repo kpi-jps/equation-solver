@@ -114,5 +114,31 @@ class EquationSolver {
         return b < 0 ? new this.Root( b / a, 0) : new this.Root((-1) * b / a, 0);
     }
 
+     /**
+     * @method
+     * Solves the second degree equations
+     * @param {Number} a 
+     * "a" parameter of second degree equation (ax^2+bx+c = 0)
+     * @param {Number} b 
+     * "b" parameter of second degree equation (ax^2+bx+c = 0)
+     * @param {Number} c 
+     * "c" parameter of second degree equation (ax^2+bx+c = 0)
+     * @returns {Array<EquationSolver.Root>}
+     * An array of Root objects 
+     */
+     static #secondDegreeEquationSolver(a, b, c) {
+        if (a === 0) return [new EquationSolver.Root(-c / b, null)];
+        const delta = Math.pow(b, 2) - 4 * a * c;
+        return delta < 0 ?
+            [
+                new EquationSolver.Root(-b / (2 * a), Math.sqrt(Math.abs(delta)) / (2 * a)),
+                new EquationSolver.Root(-b / (2 * a), -Math.sqrt(Math.abs(delta)) / (2 * a))
+            ] :
+            [
+                new EquationSolver.Root((-b + Math.sqrt(delta)) / (2 * a), null),
+                new EquationSolver.Root((-b - Math.sqrt(delta)) / (2 * a), null)
+            ]
+    }
+
     
 }
