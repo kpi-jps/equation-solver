@@ -35,7 +35,7 @@ class EquationSolver {
          * A number for decimal places used to represent Roots as string 
          */
         static setDecimalPlaces(decimalPlaces) {
-            this.#decimalPlaces = decimalPlaces;
+            EquationSolver.Root.#decimalPlaces = decimalPlaces;
         }
 
         /**
@@ -65,7 +65,7 @@ class EquationSolver {
          * The value of real part of the Root object as a string
          */
         getReValueAsString() {
-            return Number.isInteger(this.#re) ? this.#re.toString() : this.#re.toFixed(this.#decimalPlaces);
+            return Number.isInteger(this.#re) ? this.#re.toString() : this.#re.toFixed(EquationSolver.Root.#decimalPlaces);
         }
         /**
          * @method
@@ -83,7 +83,7 @@ class EquationSolver {
          * The the real and imaginary part of the root as a string
          */
         getImValueAsString() {
-            return Number.isInteger(this.#im) ? this.#im.toString() + "i" : this.#im.toFixed(this.#decimalPlaces) + "i";
+            return Number.isInteger(this.#im) ? this.#im.toString() + "i" : this.#im.toFixed(EquationSolver.Root.#decimalPlaces) + "i";
         }
         /**
          * @method
