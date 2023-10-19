@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing third degree equation solver</title>
     <script src="EquationSolver.js"></script>
+    
     <style>
         body {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -30,7 +31,7 @@
             display: flex;
             padding: 10px;
         }
-        label,input {
+        .label,input {
             width: 80px;
             padding: 12px 10px;
             margin: 8px 0;
@@ -73,16 +74,16 @@
         <h2>Testing third degree equation solver</h2>
         <form>
             <div class="row">
-                <label>a = </label> <input class="input" id="input-a" type="text" value="0">
+                <span class="label">a = </span><input class="input" id="input-a" type="text" value="0"> 
             </div>
             <div class="row">  
-                <label>b = </label> <input class="input" id="input-b" type="text" value="0"> 
+                <span class="label">b = </span> <input class="input" id="input-b" type="text" value="0"> 
             </div>
             <div class="row">
-                <label>c = </label> <input class="input" id="input-c" type="text" value="1">
+                <span class="label">c = </span> <input class="input" id="input-c" type="text" value="1">
             </div>
             <div class="row">
-                <label>d = </label> <input class="input" id="input-d" type="text" value="0">
+                <span class="label">d = </span> <input class="input" id="input-d" type="text" value="0">
             </div>
             <div class="row">Equation: &nbsp; 
                 <span id="a">0</span> x <sup>3</sup> &nbsp; + &nbsp;
