@@ -111,7 +111,7 @@ class EquationSolver {
      * An array of Root objects 
      */
     static #firstDegreeEquationSolver(a, b) {
-        return b < 0 ? new this.Root(b / a, 0) : new this.Root((-1) * b / a, 0);
+        return b <= 0 ? new this.Root(b / a, 0) : new this.Root((-1) * b / a, 0);
     }
 
     /**
@@ -212,7 +212,7 @@ class EquationSolver {
      * An array of Root objects 
      */
     static solve(a, b, c, d) {
-        if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
+        if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
         }
