@@ -111,7 +111,7 @@ class EquationSolver {
      * An array of Root objects 
      */
     static #firstDegreeEquationSolver(a, b) {
-        return b <= 0 ? new this.Root(b / a, 0) : new this.Root((-1) * b / a, 0);
+        return b <= 0 ? [new this.Root(b / a, 0)] : [new this.Root((-1) * b / a, 0)];
     }
 
     /**
