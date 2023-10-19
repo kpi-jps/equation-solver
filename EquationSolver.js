@@ -168,7 +168,7 @@ class EquationSolver {
         if (delta >= 0) {
             const y1 = Math.cbrt((-q / 2) + Math.sqrt(delta)) + Math.cbrt((-q / 2) - Math.sqrt(delta));
             const delta2 = -(3 * Math.pow(y1, 2) + 4 * p);
-            const root1 = new this.Root(y1 - A / 3, null);
+            const root1 = new this.Root(y1 - A / 3, 0);
             if (delta2 < 0) {
                 const root2 = new this.Root(-y1 / 2 - A / 3, Math.sqrt(Math.abs(delta2)) / 2);
                 const root3 = new this.Root(-y1 / 2 - A / 3, -Math.sqrt(Math.abs(delta2)) / 2);
@@ -211,7 +211,7 @@ class EquationSolver {
      * @returns {Array<EquationSolver.Root>}
      * An array of Root objects 
      */
-    static solver(a, b, c, d) {
+    static solve(a, b, c, d) {
         if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
