@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing third degree equation solver</title>
+    <title>Testing Equation Solver</title>
     <script src="EquationSolver.js"></script>
     <script>
         window.addEventListener("load", () => {
@@ -45,10 +45,10 @@
                 let output = "S = {"
                 outputEl.innerText = "";
                 outputEl.classList.add("output");
-                solution.forEach( (s, index) => {
-                    index == 0 ? 
-                        output+= s.getRootAsString() :
-                        output+= ", " + s.getRootAsString()
+                solution.forEach((s, index) => {
+                    index == 0 ?
+                        output += s.getRootAsString() :
+                        output += ", " + s.getRootAsString()
                 });
                 output += "}";
                 outputEl.innerText = output;
@@ -69,7 +69,7 @@
             dInputEl.addEventListener("change", (e) => {
                 document.getElementById("d").innerText = e.target.value;
             });
-            
+
             document.querySelector("form").addEventListener("submit", (e) => {
                 e.preventDefault();
                 const [a, b, c, d] = getParameters();
@@ -90,13 +90,16 @@
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 1.1rem;
         }
+
         main {
             width: 90%;
             margin: auto;
         }
+
         h2 {
             text-align: center;
         }
+
         form {
             border: 1px solid black;
             border-radius: 10px;
@@ -104,17 +107,21 @@
             width: 70%;
             margin: 10px auto;
         }
+
         .row {
             display: flex;
             padding: 10px;
         }
-        .label,input {
+
+        .label,
+        input {
             width: 80px;
             padding: 12px 10px;
             margin: 8px 0;
             box-sizing: border-box;
             text-align: center;
         }
+
         .input {
             border: 0;
             border-bottom: 2px solid black;
@@ -127,34 +134,36 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
         #solveBtn:hover {
             background-color: lightgray;
         }
+
         .output {
             border: 1px solid black;
             border-radius: 10px;
             width: 70%;
             margin: 10px auto;
-            padding: 15px 10px ;
+            padding: 15px 10px;
         }
+
         .alert {
             border: 1px solid red;
             background-color: lightpink;
             text-align: center;
         }
-
     </style>
 </head>
 
 <body>
     <main>
-        <h2>Testing third degree equation solver</h2>
+        <h2>Testing Equation Solver</h2>
         <form>
             <div class="row">
-                <span class="label">a = </span><input class="input" id="input-a" type="text" value="0"> 
+                <span class="label">a = </span><input class="input" id="input-a" type="text" value="0">
             </div>
-            <div class="row">  
-                <span class="label">b = </span> <input class="input" id="input-b" type="text" value="0"> 
+            <div class="row">
+                <span class="label">b = </span> <input class="input" id="input-b" type="text" value="0">
             </div>
             <div class="row">
                 <span class="label">c = </span> <input class="input" id="input-c" type="text" value="1">
@@ -162,7 +171,7 @@
             <div class="row">
                 <span class="label">d = </span> <input class="input" id="input-d" type="text" value="0">
             </div>
-            <div class="row">Equation: &nbsp; 
+            <div class="row">Equation: &nbsp;
                 <span id="a">0</span> x <sup>3</sup> &nbsp; + &nbsp;
                 <span id="b">0</span> x <sup>2</sup> &nbsp; + &nbsp;
                 <span id="c">1</span> x &nbsp; + &nbsp;
