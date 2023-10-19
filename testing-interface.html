@@ -7,7 +7,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing third degree equation solver</title>
     <script src="EquationSolver.js"></script>
-    
+    <script>
+        window.addEventListener("load", () => {
+            const outputEl = document.getElementById("output");
+            const aInputEl = document.getElementById("input-a");
+            const bInputEl = document.getElementById("input-b");
+            const cInputEl = document.getElementById("input-c");
+            const dInputEl = document.getElementById("input-d");
+
+            /**
+             * @return {Array<String>}
+             */
+            function getParameters() {
+                return [
+                    aInputEl.value.replace(",", "."),
+                    bInputEl.value.replace(",", "."),
+                    cInputEl.value.replace(",", "."),
+                    dInputEl.value.replace(",", ".")
+                ]
+            };
+
+            /**
+             * @param {String} msg
+             */
+            function outputAlert(msg) {
+                outputEl.classList.add("alert", "output");
+                outputEl.innerText = msg;
+                setTimeout(() => {
+                    outputEl.innerText = "";
+                    outputEl.classList.remove("alert", "output");
+                }, 3000);
+            };
+            /**
+             * @param {Array <EquationSolver.Root>} solution
+             */
+            function outputSolution(solution) {
+                let output = "S = {"
+                outputEl.innerText = "";
+                outputEl.classList.add("output");
+                solution.forEach( (s, index) => {
+                    index == 0 ? 
+                        output+= s.getRootAsString() :
+                        output+= ", " + s.getRootAsString()
+                });
+                output += "}";
+                outputEl.innerText = output;
+            };
+
+            aInputEl.addEventListener("change", (e) => {
+                document.getElementById("a").innerText = e.target.value;
+            });
+
+            bInputEl.addEventListener("change", (e) => {
+                document.getElementById("b").innerText = e.target.value;
+            });
+
+            cInputEl.addEventListener("change", (e) => {
+                document.getElementById("c").innerText = e.target.value;
+            });
+
+            dInputEl.addEventListener("change", (e) => {
+                document.getElementById("d").innerText = e.target.value;
+            });
+            
+            document.querySelector("form").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const [a, b, c, d] = getParameters();
+                try {
+                    const solution = EquationSolver.solve(a, b, c, d);
+                    console.log(solution);
+                    outputSolution(solution);
+                } catch (error) {
+                    outputAlert(error.message);
+                    console.log(error)
+                }
+            });
+
+        })
+    </script>
     <style>
         body {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
