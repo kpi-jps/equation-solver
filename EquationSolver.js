@@ -192,7 +192,6 @@ class EquationSolver {
             new this.Root(y2 - A / 3, 0),
             new this.Root(y3 - A / 3, 0)
         ]
-
     }
     /**
      * @method
@@ -217,8 +216,8 @@ class EquationSolver {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
         }
-        if (c == 0 || d == 0) {
-            const rangeErrorMsg = "\"c\" and \"d\" parameters must be different of 0!";
+        if (c == 0) {
+            const rangeErrorMsg = "\"c\" parameter must be different of 0!";
             throw new RangeError(rangeErrorMsg);
         }
         if (a == 0 && b == 0) return this.#firstDegreeEquationSolver(c, d);

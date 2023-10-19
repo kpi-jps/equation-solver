@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing third degree equation solver</title>
+    <script src="EquationSolver.js"></script>
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.1rem;
+        }
+        main {
+            width: 90%;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            width: 70%;
+            margin: 10px auto;
+        }
+        .row {
+            display: flex;
+            padding: 10px;
+        }
+        label,input {
+            width: 80px;
+            padding: 12px 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .input {
+            border: 0;
+            border-bottom: 2px solid black;
+        }
+
+        #solveBtn {
+            margin: 10px;
+            background-color: lightgoldenrodyellow;
+            border: 1px solid lightslategray;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        #solveBtn:hover {
+            background-color: lightgray;
+        }
+        .output {
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 70%;
+            margin: 10px auto;
+            padding: 15px 10px ;
+        }
+        .alert {
+            border: 1px solid red;
+            background-color: lightpink;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>Testing third degree equation solver</h2>
+        <form>
+            <div class="row">
+                <label>a = </label> <input class="input" id="input-a" type="text" value="0">
+            </div>
+            <div class="row">  
+                <label>b = </label> <input class="input" id="input-b" type="text" value="0"> 
+            </div>
+            <div class="row">
+                <label>c = </label> <input class="input" id="input-c" type="text" value="1">
+            </div>
+            <div class="row">
+                <label>d = </label> <input class="input" id="input-d" type="text" value="0">
+            </div>
+            <div class="row">Equation: &nbsp; 
+                <span id="a">0</span> x <sup>3</sup> &nbsp; + &nbsp;
+                <span id="b">0</span> x <sup>2</sup> &nbsp; + &nbsp;
+                <span id="c">1</span> x &nbsp; + &nbsp;
+                <span id="d">0</span> &nbsp; = &nbsp;0
+            </div>
+            <input type="submit" value="Solve" id="solveBtn">
+        </form>
+        <div id="output" class=""></div>
+    </main>
+
+</body>
+
+</html>
