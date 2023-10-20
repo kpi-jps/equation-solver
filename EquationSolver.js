@@ -64,7 +64,7 @@ class EquationSolver {
          * @returns {String}
          * The value of real part of the Root object as a string
          */
-        getReValueAsString() {
+        #getReValueAsString() {
             return Number.isInteger(this.#re) ? this.#re.toString() : this.#re.toFixed(EquationSolver.Root.#decimalPlaces);
         }
         /**
@@ -82,7 +82,7 @@ class EquationSolver {
          * @returns {String}
          * The the real and imaginary part of the root as a string
          */
-        getImValueAsString() {
+        #getImValueAsString() {
             return Number.isInteger(this.#im) ? this.#im.toString() + "i" : this.#im.toFixed(EquationSolver.Root.#decimalPlaces) + "i";
         }
         /**
@@ -92,11 +92,11 @@ class EquationSolver {
          * The representantion of root values
          */
         getRootAsString() {
-            if (this.#im == 0) return this.getReValueAsString();
-            if (this.#re === 0) return this.getImValueAsString();
+            if (this.#im == 0) return this.#getReValueAsString();
+            if (this.#re === 0) return this.#getImValueAsString();
             return (this.#im > 0) ?
-                this.getReValueAsString() + "+" + this.getImValueAsString() :
-                this.getReValueAsString() + this.getImValueAsString();
+                this.#getReValueAsString() + "+" + this.#getImValueAsString() :
+                this.#getReValueAsString() + this.#getImValueAsString();
         }
     }
 
