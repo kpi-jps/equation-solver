@@ -230,13 +230,14 @@ class EquationSolver {
                 "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!"
             );
         }
-        if (a == 0 && b == 0 && c == 0) {
+        const [numA, numB, numC, numD] = [Number(a), Number(b), Number(c), Number(d)];
+        if (numA == 0 && numB == 0 && numC == 0) {
             throw new Error(
                 "\"If a and b are equal 0, c\" parameter must be different of 0!"
             );
         }
-        if (a == 0 && b == 0) return this.#firstDegreeEquationSolver(c, d);
+        if (numA == 0 && numB == 0) return this.#firstDegreeEquationSolver(numC, numD);
         if (a == 0) return this.#secondDegreeEquationSolver(b, c, d);
-        return this.#thirdDegreeEquationSolver(a, b, c, d);
+        return this.#thirdDegreeEquationSolver(numA, numB, numC, numD);
     }
 }
