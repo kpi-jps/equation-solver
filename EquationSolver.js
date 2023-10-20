@@ -33,8 +33,14 @@ class EquationSolver {
          * Sets a decimal places for real and imaginary part a root
          * @param {Number} decimalPlaces 
          * A number for decimal places used to represent Roots as string 
+         * * @throws {TypeError}
+         * A TypeError when decimalPlaces isn't a number
          */
         static setDecimalPlaces(decimalPlaces) {
+            if (isNaN(decimalPlaces)) {
+                const typeErrorMsg = "decimalPlaces must be a number!";
+                throw new TypeError(typeErrorMsg);
+            }
             EquationSolver.Root.#decimalPlaces = decimalPlaces;
         }
 
