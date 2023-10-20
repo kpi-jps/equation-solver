@@ -222,8 +222,8 @@ class EquationSolver {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
         }
-        if (c == 0) {
-            const rangeErrorMsg = "\"c\" parameter must be different of 0!";
+        if (a == 0 && b == 0 && c == 0) {
+            const rangeErrorMsg = "\"If a and b are equal 0, c\" parameter must be different of 0!";
             throw new RangeError(rangeErrorMsg);
         }
         if (a == 0 && b == 0) return this.#firstDegreeEquationSolver(c, d);
