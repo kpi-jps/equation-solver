@@ -17,7 +17,7 @@ To use the application, download the *EquationSolver.js* and use it in a script 
 
 The `EquationSolver` class makes avaiable just one public static method named **solver**, that receives 4 numbers as parameters representing the coefficients *a*, *b*, *c* and *d* for third degree equations (***a****x*³ + ***b****x*² + ***c****x* + ***d*** = 0). 
 
-If *a* was past as 0 to the method, it will return the solution for a second degree equation. If *a* and *b* were passed as 0, the method will return the solution for a first degree equation. The coefficient *c* can't be equal to 0, for this value the method throws a `RangeError` object. If one or more method parameters isn't a `Number`, it throws a `TypeError` object.
+If *a* is equal to 0 to the method, it returns the solution for a second degree equation. If *a* and *b* are equal to 0, the method returns the solution for a first degree equation. The coefficient *c* can't be equal to 0, for this value the method throws a `Error` object. If one or more method parameters isn't a `Number`, it also throws a `Error` object.
 
 Because the **solver** method throws `Error` objects, it needs to be use together try/catch statement:
 
