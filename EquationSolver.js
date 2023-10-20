@@ -226,12 +226,14 @@ class EquationSolver {
             );
         }
         if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
-            const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
-            throw new TypeError(typeErrorMsg);
+            throw new Error(
+                "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!"
+            );
         }
         if (a == 0 && b == 0 && c == 0) {
-            const rangeErrorMsg = "\"If a and b are equal 0, c\" parameter must be different of 0!";
-            throw new RangeError(rangeErrorMsg);
+            throw new Error(
+                "\"If a and b are equal 0, c\" parameter must be different of 0!"
+            );
         }
         if (a == 0 && b == 0) return this.#firstDegreeEquationSolver(c, d);
         if (a == 0) return this.#secondDegreeEquationSolver(b, c, d);
