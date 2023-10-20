@@ -133,7 +133,7 @@ class EquationSolver {
     * An array of Root objects 
     */
     static #secondDegreeEquationSolver(a, b, c) {
-        if (a === 0) return [new this.Root(-c / b, 0)];
+        if (a === 0) return this.#firstDegreeEquationSolver(b, c);
         const delta = Math.pow(b, 2) - 4 * a * c;
         return delta < 0 ?
             [
