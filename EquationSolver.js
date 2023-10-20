@@ -204,14 +204,14 @@ class EquationSolver {
     /**
      * @method
      * Solves the first, second or third degree equations
-     * @param {Number} a 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0). 
+     * @param {String} a 
+     * String representing a parameter of third degree equation (ax^3+bx^2+cx+d = 0). 
      * Needs to be 0 for first and second degree equations
-     * @param {Number} b 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {String} b 
+     * String representing a parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * Needs to be 0 for first degree equations
-     * @param {Number} c 
-     * Parameter of third degree equation (ax^3+bx^2+cx+d = 0)
+     * @param {String} c 
+     * String representing a parameter of third degree equation (ax^3+bx^2+cx+d = 0)
      * @throws {TypeError}
      * A TypeError when "a", "b", "c" and/or "d" aren't a number
      * @throws {RangeError}
@@ -220,6 +220,11 @@ class EquationSolver {
      * An array of Root objects 
      */
     static solve(a, b, c, d) {
+        if (a.trim() == "" || b.trim() == "" || c.trim() == "" || d.trim() == "") {
+            throw new Error(
+                "\"a\", \"b\", \"c\" and/or \"d\" parameters can not be empty!"
+            );
+        }
         if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
             const typeErrorMsg = "\"a\", \"b\", \"c\" and \"d\" parameters must be a number!";
             throw new TypeError(typeErrorMsg);
