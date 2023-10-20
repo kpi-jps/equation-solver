@@ -133,7 +133,7 @@ class EquationSolver {
     * An array of Root objects 
     */
     static #secondDegreeEquationSolver(a, b, c) {
-        if (a === 0) return this.#firstDegreeEquationSolver(b, c);
+        if (a == 0) return this.#firstDegreeEquationSolver(b, c);
         if (b == 0 && c == 0) return [new this.Root(0,0)];
         const delta = Math.pow(b, 2) - 4 * a * c;
         return delta < 0 ?
@@ -162,7 +162,8 @@ class EquationSolver {
     * An array of Root objects 
     */
     static #thirdDegreeEquationSolver(a, b, c, d) {
-        if (d === 0) return [new this.Root(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
+        if (b == 0 && c == 0 && d == 0) return [new this.Root(0,0)];
+        if (d == 0) return [new this.Root(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
 
         //using Tartaglia-Cardano method
         const A = b / a;
