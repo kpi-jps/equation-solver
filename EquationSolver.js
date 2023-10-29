@@ -3,6 +3,16 @@
  * Class containg static methods to solve first, second and third degree equations
  */
 class EquationSolver {
+
+    static #allowedConstructing = false;
+    
+    /**
+     * @constructor
+     * The EquationSolver can not build EquationSolver objects
+     */
+    constructor () {
+        if(!EquationSolver.#allowedConstructing) throw new Error(`${EquationSolver.name} is not constructible!`);
+    }
     /**
      * @class
      * Anonymous class that represents the Root of solved equations
@@ -24,8 +34,10 @@ class EquationSolver {
          * A number that represents an imaginary part of the root
          */
         constructor(re, im) {
+            if(!EquationSolver.#allowedConstructing) throw new Error(`${EquationSolver.Root.name} is not constructible!`)
             this.#re = re;
             this.#im = im;
+            EquationSolver.#allowedConstructing = false;
         }
 
         /**
@@ -108,6 +120,19 @@ class EquationSolver {
 
     /**
      * @method
+     * The method used to construct Root object
+     * @param {Number} re 
+     * A number that represents a real part of the root
+     * @param {Number} im 
+     * A number that represents an imaginary part of the root
+     */
+    static #create(re, im) {
+        EquationSolver.#allowedConstructing = true;
+        return new EquationSolver.Root(re, im);
+    }
+
+    /**
+     * @method
      * Solves the second degree equations
      * @param {Number} a 
      * Parameter of first degree equation (ax+b = 0)
@@ -117,7 +142,7 @@ class EquationSolver {
      * An array of Root objects 
      */
     static #firstDegreeEquationSolver(a, b) {
-        return b <= 0 ? [new this.Root(b / a, 0)] : [new this.Root((-1) * b / a, 0)];
+        return b <= 0 ? [this.#create(b / a, 0)] : [this.#create((-1) * b / a, 0)];
     }
 
     /**
@@ -134,16 +159,16 @@ class EquationSolver {
     */
     static #secondDegreeEquationSolver(a, b, c) {
         if (a == 0) return this.#firstDegreeEquationSolver(b, c);
-        if (b == 0 && c == 0) return [new this.Root(0,0)];
+        if (b == 0 && c == 0) return [this.#create(0,0)];
         const delta = Math.pow(b, 2) - 4 * a * c;
         return delta < 0 ?
             [
-                new this.Root(-b / (2 * a), Math.sqrt(Math.abs(delta)) / (2 * a)),
-                new this.Root(-b / (2 * a), -Math.sqrt(Math.abs(delta)) / (2 * a))
+                this.#create(-b / (2 * a), Math.sqrt(Math.abs(delta)) / (2 * a)),
+                this.#create(-b / (2 * a), -Math.sqrt(Math.abs(delta)) / (2 * a))
             ] :
             [
-                new this.Root((-b + Math.sqrt(delta)) / (2 * a), 0),
-                new this.Root((-b - Math.sqrt(delta)) / (2 * a), 0)
+                this.#create((-b + Math.sqrt(delta)) / (2 * a), 0),
+                this.#create((-b - Math.sqrt(delta)) / (2 * a), 0)
             ]
     }
 
@@ -162,8 +187,8 @@ class EquationSolver {
     * An array of Root objects 
     */
     static #thirdDegreeEquationSolver(a, b, c, d) {
-        if (b == 0 && c == 0 && d == 0) return [new this.Root(0,0)];
-        if (d == 0) return [new this.Root(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
+        if (b == 0 && c == 0 && d == 0) return [this.#create(0,0)];
+        if (d == 0) return [this.#create(0, 0)].concat(this.#secondDegreeEquationSolver(a, b, c));
 
         //using Tartaglia-Cardano method
         const A = b / a;
@@ -176,14 +201,14 @@ class EquationSolver {
         if (delta >= 0) {
             const y1 = Math.cbrt((-q / 2) + Math.sqrt(delta)) + Math.cbrt((-q / 2) - Math.sqrt(delta));
             const delta2 = -(3 * Math.pow(y1, 2) + 4 * p);
-            const root1 = new this.Root(y1 - A / 3, 0);
+            const root1 = this.#create(y1 - A / 3, 0);
             if (delta2 < 0) {
-                const root2 = new this.Root(-y1 / 2 - A / 3, Math.sqrt(Math.abs(delta2)) / 2);
-                const root3 = new this.Root(-y1 / 2 - A / 3, -Math.sqrt(Math.abs(delta2)) / 2);
+                const root2 = this.#create(-y1 / 2 - A / 3, Math.sqrt(Math.abs(delta2)) / 2);
+                const root3 = this.#create(-y1 / 2 - A / 3, -Math.sqrt(Math.abs(delta2)) / 2);
                 return [root1, root2, root3];
             }
-            const root2 = new this.Root(((-y1 + Math.sqrt(delta2)) / 2) - A / 3, 0);
-            const root3 = new this.Root(((-y1 - Math.sqrt(delta2)) / 2) - A / 3, 0);
+            const root2 = this.#create(((-y1 + Math.sqrt(delta2)) / 2) - A / 3, 0);
+            const root3 = this.#create(((-y1 - Math.sqrt(delta2)) / 2) - A / 3, 0);
             return [root1, root2, root3];
         }
 
@@ -196,9 +221,9 @@ class EquationSolver {
         const y3 = 2 * Math.cbrt(rho) * Math.cos((theta + 4 * Math.PI) / 3);
 
         return [
-            new this.Root(y1 - A / 3, 0),
-            new this.Root(y2 - A / 3, 0),
-            new this.Root(y3 - A / 3, 0)
+            this.#create(y1 - A / 3, 0),
+            this.#create(y2 - A / 3, 0),
+            this.#create(y3 - A / 3, 0)
         ]
     }
     /**
