@@ -56,6 +56,7 @@
 
             "teste".indexOf()
             aInputEl.addEventListener("change", (e) => {
+                document.getElementById("a-signal").innerText = "";
                 if(e.target.value.indexOf("-") != -1) {
                     document.getElementById("a").innerText = e.target.value.replace("-", "");
                     document.getElementById("a-signal").innerText = "-";
